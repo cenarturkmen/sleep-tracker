@@ -19,25 +19,30 @@ public class SleepTrackerController {
 
   @PostMapping("/add")
   public ResponseEntity<String> addSleep(
-    @RequestBody AddSleepRequest addSleepRequest
+      @RequestBody AddSleepRequest addSleepRequest
   ) {
 
     return ResponseEntity.ok(sleepTrackerService.addSleep(addSleepRequest));
   }
 
   @PostMapping("/delete")
-  public void deleteSleep() {
-    // delete sleep
+  public ResponseEntity<String> delete(
+      @RequestBody Integer sleepId) {
+    return ResponseEntity.ok(sleepTrackerService.deleteSleep(sleepId));
   }
 
   @PostMapping("/update")
-  public void updateSleep() {
-    // update sleep
+  public ResponseEntity<SleepTracker> updateSleep(
+      @RequestBody UpdateSleepRequest updateSleepRequest
+  ) {
+    return ResponseEntity.ok(sleepTrackerService.updateSleep(updateSleepRequest));
   }
 
-  @PostMapping("/get")
-  public void getSleep() {
-    // get sleep
+  @GetMapping("/get")
+  public ResponseEntity<SleepTracker> getSleep(
+      @RequestBody Integer sleepId
+  ) {
+    return ResponseEntity.ok(sleepTrackerService.getSleep(sleepId));
   }
 
   @GetMapping("/get-all")
